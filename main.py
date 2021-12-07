@@ -1,9 +1,6 @@
-import random
-
 from chain import Chain
 
-test = Chain(50)
-for i in range(1, 100):
-    test.insert(random.randint(1, 100))
+chainMethod = Chain(50)
+chainMethod.insert_values(100, 1, 10000)
 
-test.print_table()
+chainMethod.print_table()
