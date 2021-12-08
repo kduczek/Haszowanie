@@ -1,3 +1,6 @@
+import random
+
+
 class Empty: pass
 
 
@@ -32,7 +35,7 @@ class Linear:
 
     def find(self, value):
         index = self.scan_for(value)
-        if index == -1 or index is Deleted or index is Empty:
+        if index == -1 or self.dictionary[index] is Deleted or self.dictionary[index] is Empty:
             return None
         return self.dictionary[index]
 
@@ -41,3 +44,16 @@ class Linear:
         if index == -1:
             raise IndexError
         self.dictionary[index] = value
+
+    def delete(self, value):
+        index = self.scan_for(self.dictionary[value])
+        if index != -1 and index is not Empty:
+            self.dictionary[index] = Deleted
+
+    def print_table(self):
+        print(self.dictionary)
+
+    def insert_values(self, howMany, randomRangeA, randomRangeB):
+        listOfNumbers = random.sample(range(randomRangeA, randomRangeB + 1), howMany)
+        for i in listOfNumbers:
+            self.insert(i)
