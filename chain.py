@@ -15,37 +15,37 @@ class Chain:
     def find_index(self, value):
         global comparisonCounter
         comparisonCounter = 0
-        h = hash(value) % len(self.listOfLists)
-        for i in range(0, len(self.listOfLists[h])):
+        hashValue = hash(value) % len(self.listOfLists)
+        for index in range(0, len(self.listOfLists[hashValue])):
             comparisonCounter += 1
-            if self.listOfLists[h][i] == value:
-                return h, i
-        return h, -1
+            if self.listOfLists[hashValue][index] == value:
+                return hashValue, index
+        return hashValue, -1
 
     def find(self, value):
-        (h, i) = self.find_index(value)
-        if i == -1:
+        (hashValue, index) = self.find_index(value)
+        if index == -1:
             return None
-        return self.listOfLists[h][i]
+        return self.listOfLists[hashValue][index]
 
     def insert(self, value):
-        (h, i) = self.find_index(value)
-        if i == -1:
-            self.listOfLists[h].append(value)
+        (hashValue, index) = self.find_index(value)
+        if index == -1:
+            self.listOfLists[hashValue].append(value)
         else:
-            self.listOfLists[h][i] = value
+            self.listOfLists[hashValue][index] = value
 
     def delete(self, value):
-        (h, i) = self.find_index(value)
-        if i != -1:
-            self.listOfLists[h].remove(value)
+        (hashValue, index) = self.find_index(value)
+        if index != -1:
+            self.listOfLists[hashValue].remove(value)
 
     def print_table(self):
-        for i in self.listOfLists:
-            print(i)
+        for index in self.listOfLists:
+            print(index)
 
     def insert_values(self, howMany, randomRangeA, randomRangeB):
-        for i in range(howMany):
+        for _ in range(howMany):
             value = random.randint(randomRangeA, randomRangeB)
             while self.find_index(value)[1] != -1:
                 value = random.randint(randomRangeA, randomRangeB)
