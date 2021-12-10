@@ -1,5 +1,11 @@
 import random
 
+comparisonCounter = 0
+
+
+def getComparisonCounterLinear():
+    return comparisonCounter
+
 
 class Empty: pass
 
@@ -15,21 +21,30 @@ class Linear:
             self.dictionary[i] = Empty
 
     def scan_for(self, value):
+        global comparisonCounter
+        comparisonCounter = 0
         firstIndex = hash(value) % len(self.dictionary)
+        comparisonCounter += 1
         step = 1
         deletedIndex = -1
         index = firstIndex
 
         while self.dictionary[index] is not Empty:
+            comparisonCounter += 1
             if self.dictionary[index] is Deleted:
+                comparisonCounter += 1
                 if deletedIndex == -1:
+                    comparisonCounter += 1
                     deletedIndex = index
             elif self.dictionary[index] == value:
+                comparisonCounter += 1
                 return index
             index = (index + step) % len(self.dictionary)
             if index == firstIndex:
+                comparisonCounter += 1
                 return deletedIndex
         if deletedIndex != -1:
+            comparisonCounter += 1
             return deletedIndex
         return index
 
