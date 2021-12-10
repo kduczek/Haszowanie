@@ -1,12 +1,12 @@
-from chain import Chain
-from linear import Linear
+import utils
 
-chainMethod = Chain(50)
-# chainMethod.insert_values(100, 1, 10000)
-# chainMethod.print_table()
 
-linearMethod = Linear(50)
-# linearMethod.insert_values(50, 1, 50)
-# linearMethod.print_table()
-# linearMethod.delete(21)
-# linearMethod.print_table()
+def main():
+    utils.printChartLinearMethod()
+    utils.printChartChainMethod()
+    utils.linearTest()
+    utils.chainTest()
+
+
+if __name__ == "__main__":
+    main()

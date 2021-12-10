@@ -1,5 +1,11 @@
 import random
 
+comparisonCounter = 0
+
+
+def getComparisonCounter():
+    return comparisonCounter
+
 
 class Chain:
 
@@ -7,8 +13,11 @@ class Chain:
         self.listOfLists = [[] for _ in range(size)]
 
     def find_index(self, value):
+        global comparisonCounter
+        comparisonCounter = 0
         h = hash(value) % len(self.listOfLists)
         for i in range(0, len(self.listOfLists[h])):
+            comparisonCounter += 1
             if self.listOfLists[h][i] == value:
                 return h, i
         return h, -1
@@ -27,9 +36,9 @@ class Chain:
             self.listOfLists[h][i] = value
 
     def delete(self, value):
-        (h, i) = self.find(value)
+        (h, i) = self.find_index(value)
         if i != -1:
-            self.listOfLists[h][i].remove(value)
+            self.listOfLists[h].remove(value)
 
     def print_table(self):
         for i in self.listOfLists:
@@ -41,5 +50,3 @@ class Chain:
             while self.find_index(value)[1] != -1:
                 value = random.randint(randomRangeA, randomRangeB)
             self.insert(value)
-
-
